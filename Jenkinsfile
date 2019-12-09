@@ -1,15 +1,15 @@
 pipeline{
 agent any
 	tools{
-	maven 'MAVEN 3'
-	jdk 'jdk1.8.0_172'
+	maven 'jdk1.8.0_172'
+	jdk 'MAVEN 3'
 	}
 	stages{
-		stage('compilation'){
+		stage('build'){
 				steps{
-				bat 'mvn compiler:compile'
+				bat 'mvn clean install'
 				}
-                        post {
+				post {
                     success {
                      bat "echo 'Projet compilé avec succès'"     
                     }
@@ -18,5 +18,15 @@ agent any
                     }
               }
 		}
+		stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
 	}
 }
