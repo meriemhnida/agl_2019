@@ -28,5 +28,18 @@ agent any
                 }
             }
         }
+		stage('couverture') {
+            steps {
+               
+                bat 'mvn javadoc:javadoc cobertura:cobertura -Pmetrics'
+                
+            }
+             post {
+                  always {
+                        cobertura coberturaReportFile: '**/target/site/cobertura/coverage.xml'
+                        cleanWs()
+                        }
+                  }
+        }
 	}
 }
