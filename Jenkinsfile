@@ -31,7 +31,7 @@ agent any
 		stage('couverture') {
             steps {
                
-                bat 'mvn javadoc:javadoc cobertura:cobertura -Pmetrics'
+                bat 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
                 
             }
              post {
