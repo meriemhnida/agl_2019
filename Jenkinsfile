@@ -7,7 +7,7 @@ agent any
 	stages{
 		stage('build'){
 				steps{
-				bat 'mvn clean install'
+				bat 'mvn compiler:compile'
 				}
 				post {
                     success {
@@ -37,7 +37,7 @@ agent any
              post {
                   always {
                         cobertura coberturaReportFile: '**/target/site/cobertura/coverage.xml'
-                        cleanWs()
+                       
                         }
                   }
         }
