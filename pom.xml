@@ -30,7 +30,6 @@
 
     <jacoco.version>0.8.5</jacoco.version>
 
-	
   </properties>
 
   <dependencies>
