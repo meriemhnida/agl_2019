@@ -9,6 +9,14 @@ agent any
 				steps{
 				bat 'mvn clean install'
 				}
+				 post {
+                    success {
+                     bat "echo 'Projet compilé avec succès'"     
+                    }
+                    failure {
+                     bat "echo 'Erreur lors de la compilation du projet'"     
+                    }
+              }
 		}
 	}
 }
