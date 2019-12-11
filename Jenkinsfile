@@ -1,15 +1,19 @@
 pipeline{
 agent any
 	tools{
-	maven 'jdk1.8.0_172'
-	jdk 'MAVEN 3'
+	maven 'MAVEN 3'
+	jdk 'jdk1.8.0_172'
 	}
 	stages{
 		stage('build'){
 				steps{
-				bat 'mvn clean install'
+				bat 'mvn compiler:compile'
 				}
+<<<<<<< HEAD
 				 post {
+=======
+				post {
+>>>>>>> 45b71fa17699fcb95821c4c21dffc178b49d69ea
                     success {
                      bat "echo 'Projet compilé avec succès'"     
                     }
@@ -18,5 +22,28 @@ agent any
                     }
               }
 		}
+		stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+		stage('couverture') {
+            steps {
+               
+                bat 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
+                
+            }
+             post {
+                  always {
+                        cobertura coberturaReportFile: '**/target/site/cobertura/coverage.xml'
+                       
+                        }
+                  }
+        }
 	}
 }
