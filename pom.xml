@@ -138,6 +138,8 @@
             <version>2.7</version>
             <executions>
                 <execution>
+
+                    
                     <id>cobertura</id>
                     <phase>test</phase>
                     <goals>
