@@ -9,11 +9,8 @@ agent any
 				steps{
 				bat 'mvn compiler:compile'
 				}
-<<<<<<< HEAD
+
 				 post {
-=======
-				post {
->>>>>>> 45b71fa17699fcb95821c4c21dffc178b49d69ea
                     success {
                      bat "echo 'Projet compilé avec succès'"     
                     }
